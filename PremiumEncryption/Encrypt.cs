@@ -45,7 +45,7 @@ namespace PremiumEncryption
                 foreach (IListBlobItem listBlob in resultSegment.Results)
                 {
                     CloudBlockBlob blob = listBlob as CloudBlockBlob;
-                    if(blob != null)
+                    if(blob != null && blob.Name != ".key")
                     {
                         taskList.Add(encryptFileAsync(blob, blobContainer, encryptor));
                     }

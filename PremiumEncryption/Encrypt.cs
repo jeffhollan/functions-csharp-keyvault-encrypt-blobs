@@ -78,6 +78,7 @@ namespace PremiumEncryption
             var inStream = await blob.OpenReadAsync();
             new CryptoStream(inStream, encryptor, CryptoStreamMode.Read).CopyTo(outStream);
             await eBlob.UploadFromStreamAsync(outStream);
+            await blob.DeleteIfExistsAsync();
         }
 
         private static KeyVaultClient GenerateKeyVaultDEBUG()
